@@ -526,13 +526,3 @@ SOFTWARE.
 ```
 
 ---
-
-<div align="center">
-
-**Desenvolvido com ❤️ para o estudo de Teoria da Computação**
-
-Se este projeto foi útil para você, considere dar uma ⭐ no GitHub!
-
-[⬆ Voltar ao topo](#-simulador-de-máquina-de-turing)
-
-</div>
