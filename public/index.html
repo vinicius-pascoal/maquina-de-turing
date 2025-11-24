@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Simulador interativo de Máquina de Turing com interface moderna. Aprenda Teoria da Computação de forma visual e intuitiva.">
+    <meta name="keywords" content="Máquina de Turing, Simulador, Teoria da Computação, Educação, Computabilidade">
+    <meta name="author" content="Vinicius Pascoal">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Simulador de Máquina de Turing">
+    <meta property="og:description" content="Simulador interativo com interface moderna para estudo de Teoria da Computação">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Simulador de Máquina de Turing">
+    <meta name="twitter:description" content="Simulador interativo com interface moderna para estudo de Teoria da Computação">
+    
+    <title>Simulador de Máquina de Turing | Interactive Turing Machine</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <svg class="logo-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <h1>Máquina de Turing</h1>
+                </div>
+                <p class="subtitle">Simulador Interativo de Computação</p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Editor Section -->
+            <section class="editor-section">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>📝 Editor de Especificação</h2>
+                        <div class="examples-container">
+                            <label for="examples-select">Exemplos:</label>
+                            <select id="examples-select" class="select-input">
+                                <option value="">Selecione um exemplo...</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <textarea id="spec-editor" class="code-editor" placeholder="Digite a especificação da máquina de Turing..."></textarea>
+                        <div class="editor-actions">
+                            <button id="validate-btn" class="btn btn-secondary">
+                                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                Validar
+                            </button>
+                            <div id="validation-message" class="validation-message"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Input Section -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2>⌨️ Entrada</h2>
+                    </div>
+                    <div class="card-body">
+                        <input type="text" id="input-field" class="text-input" placeholder="Digite a entrada para a máquina (ex: 0011)">
+                        <button id="reset-btn" class="btn btn-primary full-width">
+                            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M4 4V9H4.58152M19.9381 11C19.446 7.05369 16.0796 4 12 4C8.64262 4 5.76829 6.06817 4.58152 9M4.58152 9H9M20 20V15H19.4185M19.4185 15C18.2317 17.9318 15.3574 20 12 20C7.92038 20 4.55399 16.9463 4.06189 13M19.4185 15H15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Inicializar Máquina
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Visualization Section -->
+            <section class="visualization-section">
+                <!-- Status Card -->
+                <div class="card status-card" id="status-card">
+                    <div class="status-content">
+                        <div class="status-item">
+                            <span class="status-label">Estado:</span>
+                            <span class="status-value" id="current-state">-</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-label">Posição:</span>
+                            <span class="status-value" id="head-position">-</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-label">Símbolo:</span>
+                            <span class="status-value" id="current-symbol">-</span>
+                        </div>
+                        <div class="status-item status-full">
+                            <span class="status-label">Resultado:</span>
+                            <span class="status-badge" id="result-badge">AGUARDANDO</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tape Visualization -->
+                <div class="card tape-card">
+                    <div class="card-header">
+                        <h2>🎞️ Fita</h2>
+                    </div>
+                    <div class="card-body">
+                        <div id="tape-container" class="tape-container">
+                            <div class="empty-state">
+                                <svg class="empty-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="3" y="6" width="18" height="12" rx="2" stroke="currentColor" stroke-width="2"/>
+                                    <path d="M12 2V6M12 18V22M7 6V2M7 22V18M17 6V2M17 22V18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                                <p>Inicialize a máquina para visualizar a fita</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <div class="controls-card">
+                    <div class="controls-grid">
+                        <button id="step-btn" class="btn btn-primary" disabled>
+                            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 4L15 12L5 20V4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M19 4V20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Passo
+                        </button>
+                        <button id="run-10-btn" class="btn btn-secondary" disabled>
+                            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 4L15 12L5 20V4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M14 4L24 12L14 20V4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            10 Passos
+                        </button>
+                        <button id="run-all-btn" class="btn btn-success" disabled>
+                            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                <path d="M10 8L14 12L10 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Executar Tudo
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Transitions Table -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2>🔄 Transições</h2>
+                    </div>
+                    <div class="card-body">
+                        <div id="transitions-table" class="transitions-table">
+                            <p class="text-muted">Nenhuma transição definida</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Desenvolvido com ❤️ para o estudo de Teoria da Computação</p>
+        </footer>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="loading-overlay hidden">
+        <div class="spinner"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

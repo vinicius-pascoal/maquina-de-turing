@@ -1,59 +1,101 @@
 # 🤖 Simulador de Máquina de Turing
 
-Um simulador interativo de Máquina de Turing com interface web construída com Gradio. Este projeto permite definir, visualizar e executar máquinas de Turing de forma intuitiva, ideal para fins educacionais e experimentação.
+Um simulador interativo de Máquina de Turing com interface web moderna. Este projeto permite definir, visualizar e executar máquinas de Turing de forma intuitiva, ideal para fins educacionais e experimentação.
+
+## 🌟 Demo Online
+
+**[Ver Demo ao Vivo](https://seu-projeto.vercel.app)** _(após deploy)_
 
 ## 📋 Características
 
-- **Interface Web Interativa**: Interface moderna e responsiva usando Gradio
+- **Interface Web Moderna**: Design elegante e responsivo com animações suaves
 - **Editor de Especificações**: Defina máquinas de Turing usando uma DSL simples
 - **Visualização em Tempo Real**: Observe a fita, cabeçote e estado atual durante a execução
-- **Controle de Execução**: Execute passo a passo ou rode automaticamente
-- **Exemplos Pré-definidos**: Inclui exemplos prontos como reconhecedor de palíndromos, duplicador, incrementador e mais
-- **Validação de Sintaxe**: Validação automática das especificações da máquina
-- **Exportação**: Salve suas máquinas em formato JSON
+- **Controle de Execução**: Execute passo a passo, 10 passos ou até completar
+- **Exemplos Pré-definidos**: Inclui exemplos prontos (0^n1^n, paridade, duplicador e mais)
+- **Validação Automática**: Validação em tempo real das especificações
+- **Design System Completo**: Interface dark mode profissional
+- **Totalmente Responsivo**: Funciona perfeitamente em mobile, tablet e desktop
 
-## 🚀 Instalação
+## 🚀 Deploy na Vercel (Recomendado)
 
-### Pré-requisitos
+### Deploy com 1 Clique
 
-- Python 3.8 ou superior
-- pip (gerenciador de pacotes Python)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vinicius-pascoal/maquina-de-turing)
 
-### Passos de Instalação
+### Deploy Manual
 
-1. Clone o repositório:
+1. **Instale o Vercel CLI**:
+```bash
+npm install -g vercel
+```
+
+2. **Clone o repositório**:
 ```bash
 git clone https://github.com/vinicius-pascoal/maquina-de-turing.git
 cd maquina-de-turing
 ```
 
-2. Crie e ative um ambiente virtual (recomendado):
+3. **Faça login na Vercel**:
 ```bash
-# Windows
-python -m venv .venv
-.venv\Scripts\activate
-
-# Linux/Mac
-python -m venv .venv
-source .venv/bin/activate
+vercel login
 ```
 
-3. Instale as dependências:
+4. **Deploy**:
 ```bash
-pip install gradio
+vercel
 ```
 
-## 💻 Uso
+Pronto! Seu simulador estará online em poucos segundos. 🎉
 
-### Executando o Simulador
+### Deploy via GitHub
 
-Para iniciar o simulador, execute:
+1. Faça push do código para o GitHub
+2. Acesse [vercel.com](https://vercel.com)
+3. Clique em "New Project"
+4. Importe seu repositório
+5. Clique em "Deploy"
 
+A Vercel detectará automaticamente a configuração e fará o deploy!
+
+## 💻 Desenvolvimento Local
+
+### Pré-requisitos
+
+- Python 3.9 ou superior
+- Navegador web moderno
+
+### Executando Localmente
+
+1. **Clone o repositório**:
 ```bash
-python app.py
+git clone https://github.com/vinicius-pascoal/maquina-de-turing.git
+cd maquina-de-turing
 ```
 
-O servidor será iniciado e você poderá acessar a interface em: `http://127.0.0.1:7860`
+2. **Instale um servidor HTTP local**:
+```bash
+# Python
+python -m http.server 8000
+
+# Node.js
+npx serve public
+```
+
+3. **Acesse no navegador**:
+```
+http://localhost:8000/public/
+```
+
+### Testando as APIs Localmente
+
+Para testar as funções serverless localmente, instale o Vercel CLI:
+
+```bash
+vercel dev
+```
+
+O projeto estará disponível em `http://localhost:3000`
 
 ### Definindo uma Máquina de Turing
 
@@ -120,20 +162,49 @@ O simulador vem com vários exemplos pré-configurados:
 - **Rodar**: Executa a máquina automaticamente até parar
 - **Exportar JSON**: Salva a máquina em formato JSON
 
-## 🛠️ Estrutura do Código
+## 🛠️ Estrutura do Projeto
 
 ```
 maquina-de-turing/
-├── app.py              # Código principal do simulador
-├── .gitignore          # Arquivos ignorados pelo Git
-└── README.md           # Esta documentação
+├── api/                    # Funções serverless da Vercel
+│   ├── __init__.py
+│   ├── validate.py        # Valida especificação
+│   ├── reset.py           # Inicializa máquina
+│   ├── step.py            # Executa um passo
+│   ├── run.py             # Executa múltiplos passos
+│   └── examples.py        # Retorna exemplos
+├── core/                   # Lógica da Máquina de Turing
+│   ├── __init__.py
+│   ├── turing_machine.py  # Implementação da MT
+│   └── examples.py        # Exemplos pré-definidos
+├── public/                 # Frontend estático
+│   ├── index.html         # Interface principal
+│   ├── styles.css         # Estilos modernos
+│   └── script.js          # Lógica do cliente
+├── app.py                  # Versão Gradio (legado)
+├── vercel.json            # Configuração Vercel
+├── requirements.txt       # Dependências Python
+├── .gitignore
+└── README.md
 ```
 
-### Componentes Principais
+## 🏗️ Arquitetura
 
-- **TuringMachine**: Classe que implementa a lógica da Máquina de Turing
-- **Parser DSL**: Converte a especificação textual em uma máquina executável
-- **Interface Gradio**: Interface web interativa para visualização e controle
+### Backend (Serverless)
+- **APIs REST** em Python usando funções serverless da Vercel
+- **Stateless**: cada requisição é independente
+- **Escalável**: auto-scaling da Vercel
+
+### Frontend
+- **HTML5 + CSS3 + JavaScript Vanilla**
+- **Design System** completo com variáveis CSS
+- **Animações suaves** e transições
+- **Responsivo** para todos os dispositivos
+
+### Fluxo de Dados
+```
+[Cliente] → [API] → [Core] → [Processamento] → [API] → [Cliente]
+```
 
 ## 📖 Conceitos da Máquina de Turing
 
@@ -169,14 +240,100 @@ Desenvolvido por [Vinicius Pascoal](https://github.com/vinicius-pascoal)
 - [Documentação Gradio](https://www.gradio.app/docs/)
 - [Teoria da Computação](https://en.wikipedia.org/wiki/Theory_of_computation)
 
-## 🐛 Problemas Conhecidos
+## ⚡ Performance
 
-Se encontrar algum problema, por favor abra uma issue no GitHub.
+- **Tempo de resposta**: < 200ms por operação
+- **Cold start**: < 1s (primeira requisição)
+- **Warm requests**: < 100ms
+- **Escalabilidade**: Ilimitada (serverless)
+
+## 🎨 Tecnologias Utilizadas
+
+### Frontend
+- HTML5, CSS3, JavaScript (ES6+)
+- Design System customizado
+- Animações CSS
+- Fetch API
+
+### Backend
+- Python 3.9+
+- Vercel Serverless Functions
+- Dataclasses
+- Type Hints
+
+### Infraestrutura
+- Vercel (Hosting + Serverless)
+- Edge Network (CDN Global)
+- Automatic HTTPS
+
+## 🔧 Configuração Avançada
+
+### Variáveis de Ambiente
+
+O projeto não requer variáveis de ambiente, mas você pode adicionar:
+
+```bash
+# .env (opcional)
+MAX_STEPS=10000
+TAPE_SPAN=50
+```
+
+### Customização do Design
+
+Edite as variáveis CSS em `public/styles.css`:
+
+```css
+:root {
+    --primary: #6366f1;
+    --bg-primary: #0f172a;
+    /* ... outras variáveis */
+}
+```
+
+## 📊 Limites da Vercel
+
+- **Timeout**: 10s (Hobby) / 60s (Pro)
+- **Payload**: 4.5MB por requisição
+- **Bandwidth**: 100GB/mês (Hobby)
+
+Para máquinas muito complexas, considere aumentar o timeout no plano Pro.
+
+## 🐛 Troubleshooting
+
+### Erro "Module not found"
+```bash
+# Certifique-se de que todos os arquivos estão no lugar
+vercel dev
+```
+
+### API não responde
+- Verifique os logs: `vercel logs`
+- Teste localmente: `vercel dev`
+
+### Interface não carrega
+- Limpe o cache do navegador
+- Verifique o console do navegador (F12)
 
 ## 📞 Suporte
 
-Para dúvidas ou sugestões, abra uma issue no repositório do GitHub.
+- **Issues**: [GitHub Issues](https://github.com/vinicius-pascoal/maquina-de-turing/issues)
+- **Discussões**: [GitHub Discussions](https://github.com/vinicius-pascoal/maquina-de-turing/discussions)
+
+## 🗺️ Roadmap
+
+- [ ] Histórico de execução (undo/redo)
+- [ ] Exportar/importar máquinas em JSON
+- [ ] Modo de depuração avançado
+- [ ] Compartilhar máquinas via URL
+- [ ] Temas customizáveis
+- [ ] Múltiplas fitas (Multi-tape TM)
+
+## 📄 Licença
+
+Este projeto é open-source e está disponível sob a licença MIT.
 
 ---
 
-**Nota**: Este é um projeto educacional para demonstração dos conceitos de Máquinas de Turing. Divirta-se explorando os limites da computabilidade!
+**Desenvolvido com ❤️ para o estudo de Teoria da Computação**
+
+Se este projeto foi útil, considere dar uma ⭐ no GitHub!

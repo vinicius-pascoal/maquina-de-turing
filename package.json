@@ -1,0 +1,24 @@
+{
+  "name": "maquina-de-turing",
+  "version": "2.0.0",
+  "description": "Simulador interativo de Máquina de Turing para Vercel",
+  "scripts": {
+    "dev": "vercel dev",
+    "deploy": "vercel",
+    "deploy:prod": "vercel --prod",
+    "logs": "vercel logs"
+  },
+  "keywords": [
+    "turing-machine",
+    "computer-science",
+    "education",
+    "simulator",
+    "theory-of-computation"
+  ],
+  "author": "Vinicius Pascoal",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vinicius-pascoal/maquina-de-turing.git"
+  }
+}

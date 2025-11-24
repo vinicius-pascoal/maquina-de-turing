@@ -155,3 +155,4 @@ $RECYCLE.BIN/
 *.gradio/
 gradio_cached_examples/
 flagged/
+.vercel

@@ -1,0 +1,21 @@
+# Arquivos para ignorar no deploy da Vercel
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.env
+.env.local
+.DS_Store
+Thumbs.db
+*.log
+
+# Mantém apenas o necessário para produção
+app.py
