@@ -3,7 +3,6 @@
   "version": "2.0.0",
   "description": "Simulador interativo de Máquina de Turing para Vercel",
   "scripts": {
-    "dev": "vercel dev",
     "deploy": "vercel",
     "deploy:prod": "vercel --prod",
     "logs": "vercel logs"
