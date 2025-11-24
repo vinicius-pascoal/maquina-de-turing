@@ -53,8 +53,21 @@
             <section class="editor-section">
                 <div class="card">
                     <div class="card-header">
-                        <h2>📝 Editor de Especificação</h2>
+                        <h2>
+                            <svg class="title-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M11 4H4C3.46957 4 2.96086 4.21071 2.58579 4.58579C2.21071 4.96086 2 5.46957 2 6V20C2 20.5304 2.21071 21.0391 2.58579 21.4142C2.96086 21.7893 3.46957 22 4 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M18.5 2.50001C18.8978 2.10219 19.4374 1.87869 20 1.87869C20.5626 1.87869 21.1022 2.10219 21.5 2.50001C21.8978 2.89784 22.1213 3.4374 22.1213 4.00001C22.1213 4.56262 21.8978 5.10219 21.5 5.50001L12 15L8 16L9 12L18.5 2.50001Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Editor de Especificação
+                        </h2>
                         <div class="examples-container">
+                            <button id="dictionary-btn" class="btn btn-info">
+                                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                    <path d="M12 16V12M12 8H12.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                                Dicionário
+                            </button>
                             <label for="examples-select">Exemplos:</label>
                             <select id="examples-select" class="select-input">
                                 <option value="">Selecione um exemplo...</option>
@@ -78,7 +91,13 @@
                 <!-- Input Section -->
                 <div class="card">
                     <div class="card-header">
-                        <h2>⌨️ Entrada</h2>
+                        <h2>
+                            <svg class="title-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="2" y="4" width="20" height="16" rx="2" stroke="currentColor" stroke-width="2"/>
+                                <path d="M6 8H6.01M10 8H10.01M14 8H14.01M6 12H6.01M10 12H10.01M14 12H14.01M18 12H18.01M9 16H15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            Entrada
+                        </h2>
                     </div>
                     <div class="card-body">
                         <input type="text" id="input-field" class="text-input" placeholder="Digite a entrada para a máquina (ex: 0011)">
@@ -119,7 +138,13 @@
                 <!-- Tape Visualization -->
                 <div class="card tape-card">
                     <div class="card-header">
-                        <h2>🎞️ Fita</h2>
+                        <h2>
+                            <svg class="title-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="2" y="6" width="20" height="12" rx="2" stroke="currentColor" stroke-width="2"/>
+                                <path d="M6 10H6.01M10 10H10.01M14 10H14.01M18 10H18.01M6 14H6.01M10 14H10.01M14 14H14.01M18 14H18.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            Fita
+                        </h2>
                     </div>
                     <div class="card-body">
                         <div id="tape-container" class="tape-container">
@@ -164,7 +189,14 @@
                 <!-- Transitions Table -->
                 <div class="card">
                     <div class="card-header">
-                        <h2>🔄 Transições</h2>
+                        <h2>
+                            <svg class="title-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1 4V10H7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M23 20V14H17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M20.49 9C19.9828 7.56678 19.1209 6.28536 17.9845 5.27542C16.8482 4.26548 15.4745 3.55977 13.9917 3.22426C12.5089 2.88875 10.9652 2.93434 9.50481 3.35677C8.04437 3.77921 6.71475 4.56471 5.64 5.64L1 10M23 14L18.36 18.36C17.2853 19.4353 15.9556 20.2208 14.4952 20.6432C13.0348 21.0657 11.4911 21.1112 10.0083 20.7757C8.52547 20.4402 7.1518 19.7345 6.01547 18.7246C4.87913 17.7146 4.01717 16.4332 3.51 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Transições
+                        </h2>
                     </div>
                     <div class="card-body">
                         <div id="transitions-table" class="transitions-table">
@@ -179,6 +211,156 @@
     <!-- Loading Overlay -->
     <div id="loading-overlay" class="loading-overlay hidden">
         <div class="spinner"></div>
+    </div>
+
+    <!-- Dictionary Modal -->
+    <div id="dictionary-modal" class="modal hidden">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>
+                    <svg class="title-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 19.5C4 18.837 4.26339 18.2011 4.73223 17.7322C5.20107 17.2634 5.83696 17 6.5 17H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M6.5 2H20V22H6.5C5.83696 22 5.20107 21.7366 4.73223 21.2678C4.26339 20.7989 4 20.163 4 19.5V4.5C4 3.83696 4.26339 3.20107 4.73223 2.73223C5.20107 2.26339 5.83696 2 6.5 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Dicionário de Sintaxe
+                </h2>
+                <button id="close-dictionary" class="btn-close">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="dictionary-section">
+                    <h3>
+                        <svg class="section-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                            <circle cx="12" cy="12" r="6" stroke="currentColor" stroke-width="2"/>
+                            <circle cx="12" cy="12" r="2" fill="currentColor"/>
+                        </svg>
+                        Formato da Especificação
+                    </h3>
+                    <p class="description">A especificação da Máquina de Turing segue o formato:</p>
+                    <div class="code-block">
+                        <code>nome M
+entrada:q0,q1,q2,...
+branco:B
+saida:qf
+inicial:q0
+q0,símbolo_lido,símbolo_escrito,movimento,próximo_estado</code>
+                    </div>
+                </div>
+
+                <div class="dictionary-section">
+                    <h3>
+                        <svg class="section-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 5H7C6.46957 5 5.96086 5.21071 5.58579 5.58579C5.21071 5.96086 5 6.46957 5 7V19C5 19.5304 5.21071 20.0391 5.58579 20.4142C5.96086 20.7893 6.46957 21 7 21H17C17.5304 21 18.0391 20.7893 18.4142 20.4142C18.7893 20.0391 19 19.5304 19 19V7C19 6.46957 18.7893 5.96086 18.4142 5.58579C18.0391 5.21071 17.5304 5 17 5H15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M9 5C9 5.53043 9.21071 6.03914 9.58579 6.41421C9.96086 6.78929 10.4696 7 11 7H13C13.5304 7 14.0391 6.78929 14.4142 6.41421C14.7893 6.03914 15 5.53043 15 5C15 4.46957 14.7893 3.96086 14.4142 3.58579C14.0391 3.21071 13.5304 3 13 3H11C10.4696 3 9.96086 3.21071 9.58579 3.58579C9.21071 3.96086 9 4.46957 9 5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        Componentes
+                    </h3>
+                    <div class="component-list">
+                        <div class="component-item">
+                            <span class="component-label">nome</span>
+                            <span class="component-desc">Nome da máquina de Turing</span>
+                        </div>
+                        <div class="component-item">
+                            <span class="component-label">entrada</span>
+                            <span class="component-desc">Lista de estados separados por vírgula</span>
+                        </div>
+                        <div class="component-item">
+                            <span class="component-label">branco</span>
+                            <span class="component-desc">Símbolo que representa célula vazia (geralmente B ou _)</span>
+                        </div>
+                        <div class="component-item">
+                            <span class="component-label">saida</span>
+                            <span class="component-desc">Estado final de aceitação</span>
+                        </div>
+                        <div class="component-item">
+                            <span class="component-label">inicial</span>
+                            <span class="component-desc">Estado inicial da máquina</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dictionary-section">
+                    <h3>
+                        <svg class="section-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 4V10H7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M23 20V14H17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M20.49 9C19.9828 7.56678 19.1209 6.28536 17.9845 5.27542C16.8482 4.26548 15.4745 3.55977 13.9917 3.22426C12.5089 2.88875 10.9652 2.93434 9.50481 3.35677C8.04437 3.77921 6.71475 4.56471 5.64 5.64L1 10M23 14L18.36 18.36C17.2853 19.4353 15.9556 20.2208 14.4952 20.6432C13.0348 21.0657 11.4911 21.1112 10.0083 20.7757C8.52547 20.4402 7.1518 19.7345 6.01547 18.7246C4.87913 17.7146 4.01717 16.4332 3.51 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        Transições
+                    </h3>
+                    <p class="description">Formato: <code>estado_atual,símbolo_lido,símbolo_escrito,movimento,próximo_estado</code></p>
+                    <div class="component-list">
+                        <div class="component-item">
+                            <span class="component-label">estado_atual</span>
+                            <span class="component-desc">Estado em que a máquina se encontra</span>
+                        </div>
+                        <div class="component-item">
+                            <span class="component-label">símbolo_lido</span>
+                            <span class="component-desc">Símbolo lido na fita</span>
+                        </div>
+                        <div class="component-item">
+                            <span class="component-label">símbolo_escrito</span>
+                            <span class="component-desc">Símbolo a ser escrito na fita</span>
+                        </div>
+                        <div class="component-item">
+                            <span class="component-label">movimento</span>
+                            <span class="component-desc"><strong>R</strong> (direita), <strong>L</strong> (esquerda), <strong>*</strong> (parado)</span>
+                        </div>
+                        <div class="component-item">
+                            <span class="component-label">próximo_estado</span>
+                            <span class="component-desc">Estado para o qual a máquina deve transitar</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dictionary-section">
+                    <h3>
+                        <svg class="section-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 18H15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M10 22H14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M15.09 14C16.5374 13.2924 17.7267 12.1666 18.5124 10.7663C19.2982 9.36602 19.6424 7.75526 19.4976 6.1486C19.3527 4.54195 18.7254 3.01566 17.6991 1.78455C16.6728 0.553434 15.2968 -0.298803 13.7613 -0.628179C12.2258 -0.957556 10.6139 -0.744811 9.20021 -0.020936C7.78651 0.70294 6.64574 1.87172 5.93661 3.29183C5.22747 4.71194 4.98667 6.31469 5.24642 7.87452C5.50617 9.43434 6.25199 10.8729 7.37 12.0M12 2V9L15 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        Exemplo Completo
+                    </h3>
+                    <div class="code-block">
+                        <code>nome Duplica_0s
+entrada:q0,q1,q2,q3,qf
+branco:B
+saida:qf
+inicial:q0
+q0,0,X,R,q1
+q1,0,0,R,q1
+q1,B,0,L,q2
+q2,0,0,L,q2
+q2,X,0,R,qf</code>
+                    </div>
+                    <p class="description">Esta máquina duplica uma sequência de zeros.</p>
+                </div>
+
+                <div class="dictionary-section tips">
+                    <h3>
+                        <svg class="section-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 18H15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M10 22H14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M15.09 14C16.5374 13.2924 17.7267 12.1666 18.5124 10.7663C19.2982 9.36602 19.6424 7.75526 19.4976 6.1486C19.3527 4.54195 18.7254 3.01566 17.6991 1.78455C16.6728 0.553434 15.2968 -0.298803 13.7613 -0.628179C12.2258 -0.957556 10.6139 -0.744811 9.20021 -0.020936C7.78651 0.70294 6.64574 1.87172 5.93661 3.29183C5.22747 4.71194 4.98667 6.31469 5.24642 7.87452C5.50617 9.43434 6.25199 10.8729 7.37 12.0M12 2V9L15 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        Dicas Importantes
+                    </h3>
+                    <ul>
+                        <li>Cada transição deve estar em uma linha separada</li>
+                        <li>Não use espaços entre os elementos da transição</li>
+                        <li>Os estados devem ser declarados na linha "entrada:"</li>
+                        <li>Use o símbolo definido em "branco:" para células vazias</li>
+                        <li>A máquina para ao atingir o estado de "saida:"</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="script.js"></script>

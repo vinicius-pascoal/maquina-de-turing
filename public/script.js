@@ -24,7 +24,10 @@ const elements = {
   resultBadge: document.getElementById('result-badge'),
   tapeContainer: document.getElementById('tape-container'),
   transitionsTable: document.getElementById('transitions-table'),
-  loadingOverlay: document.getElementById('loading-overlay')
+  loadingOverlay: document.getElementById('loading-overlay'),
+  dictionaryBtn: document.getElementById('dictionary-btn'),
+  dictionaryModal: document.getElementById('dictionary-modal'),
+  closeDictionary: document.getElementById('close-dictionary')
 };
 
 // Utilitários
@@ -363,6 +366,35 @@ document.addEventListener('keydown', (e) => {
   if (e.key === ' ' && document.activeElement === document.body && currentMachine && !currentMachine.halted) {
     e.preventDefault();
     step();
+  }
+});
+
+// Modal do Dicionário
+function openDictionary() {
+  elements.dictionaryModal.classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeDictionaryModal() {
+  elements.dictionaryModal.classList.add('hidden');
+  document.body.style.overflow = '';
+}
+
+// Event listeners do modal
+elements.dictionaryBtn.addEventListener('click', openDictionary);
+elements.closeDictionary.addEventListener('click', closeDictionaryModal);
+
+// Fechar modal ao clicar no overlay
+elements.dictionaryModal.addEventListener('click', (e) => {
+  if (e.target === elements.dictionaryModal || e.target.classList.contains('modal-overlay')) {
+    closeDictionaryModal();
+  }
+});
+
+// Fechar modal com ESC
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && !elements.dictionaryModal.classList.contains('hidden')) {
+    closeDictionaryModal();
   }
 });
 
