@@ -69,6 +69,9 @@ body {
   max-width: 1400px;
   margin: 0 auto;
   padding: var(--spacing-xl);
+  width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 /* Header */
@@ -119,9 +122,11 @@ body {
 /* Main Content */
 .main-content {
   display: grid;
-  grid-template-columns: 1fr 1.5fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr);
   gap: var(--spacing-xl);
   animation: fadeIn 0.8s ease-out;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 /* Cards */
@@ -129,10 +134,12 @@ body {
   background: var(--surface);
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius-lg);
-  overflow: hidden;
+  overflow: visible;
   box-shadow: var(--shadow-md);
   transition: all 0.3s ease;
   margin-bottom: var(--spacing-lg);
+  max-width: 100%;
+  min-width: 0;
 }
 
 .card:hover {
@@ -158,6 +165,9 @@ body {
 
 .card-body {
   padding: var(--spacing-lg);
+  max-width: 100%;
+  overflow: visible;
+  box-sizing: border-box;
 }
 
 /* Code Editor */
@@ -393,7 +403,14 @@ body {
   min-height: 200px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  box-sizing: border-box;
+  position: relative;
+  padding: var(--spacing-md) 0;
 }
 
 .empty-state {
@@ -412,28 +429,33 @@ body {
 .tape {
   display: flex;
   gap: 4px;
-  overflow-x: auto;
-  padding: var(--spacing-lg) 0;
-  justify-content: center;
+  padding: 0;
+  min-width: min-content;
+  max-width: 100%;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  overflow: visible;
 }
 
-.tape::-webkit-scrollbar {
+.tape-container::-webkit-scrollbar {
   height: 8px;
 }
 
-.tape::-webkit-scrollbar-track {
+.tape-container::-webkit-scrollbar-track {
   background: rgba(255, 255, 255, 0.05);
   border-radius: 10px;
 }
 
-.tape::-webkit-scrollbar-thumb {
+.tape-container::-webkit-scrollbar-thumb {
   background: rgba(99, 102, 241, 0.5);
   border-radius: 10px;
 }
 
 .tape-cell {
   min-width: 48px;
+  width: 48px;
   height: 48px;
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -629,6 +651,13 @@ body {
   .examples-container .select-input {
     max-width: 100%;
   }
+
+  .tape-cell {
+    min-width: 40px;
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
 }
 
 @media (max-width: 768px) {
@@ -647,5 +676,20 @@ body {
   .card-header {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .tape-container {
+    min-height: 150px;
+  }
+
+  .tape-cell {
+    min-width: 36px;
+    width: 36px;
+    height: 36px;
+    font-size: 0.9rem;
+  }
+
+  .tape {
+    gap: 3px;
   }
 }
